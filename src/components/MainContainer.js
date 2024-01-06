@@ -57,16 +57,31 @@ function MainContainer() {
   }}
 
 
-  function stockClicked (stock){
+  function stockClicked (stockClicked){
     
-    console.log(stock)
+    
 
-    const upDatedPortafolioStocks = [...portafolioStocks,stock]
-      setPortafolioStocks(upDatedPortafolioStocks)}
+    if (portafolioStocks.includes(stockClicked)){
+
+      const removePortafolioStocks = portafolioStocks.filter((stock)=>{
+         
+        return stock.name !== stockClicked.name
+
+      })
+
+      setPortafolioStocks(removePortafolioStocks)
+    }
+    else {
+        
+      const addPortafolioStocks = [...portafolioStocks,stockClicked]
+       
+        setPortafolioStocks(addPortafolioStocks)}
+    }
 
 //Sort alphabetically
 
 function sortAlphabettically(){
+
         console.log("running when alphabet button checked")
 
         let stocksSortedByAlpha = stockList.sort(function (a, b) {
@@ -82,7 +97,7 @@ function sortAlphabettically(){
 
         console.log(stocksSortedByAlpha)
 
-        setStockList(stocksSortedByAlpha)
+        setStockList(()=> setStockList(stocksSortedByAlpha))
 
         console.log(stockList)
 
@@ -104,11 +119,12 @@ function sortByPrice(){
     }
 
     return 0;
-  });
+  })
 
   console.log(stocksSortedByPrice)
 
-  setStockList(stocksSortedByPrice)
+  setStockList(()=> setStockList(stocksSortedByPrice))
+
 
   console.log(stockList)
 
