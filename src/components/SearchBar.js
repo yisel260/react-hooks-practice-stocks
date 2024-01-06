@@ -1,6 +1,6 @@
 import React from "react";
 
-function SearchBar({sortAlphabettically,sortByPrice, filterStocks, setFilteredCategory}) {
+function SearchBar({sortAlphabettically,sortByPrice, filterStocks }) {
 
 // function testingOnChange(){
 //   console.log("dropdown menu changed")
@@ -36,10 +36,12 @@ function SearchBar({sortAlphabettically,sortByPrice, filterStocks, setFilteredCa
       <br />
       <label>
         <strong>Filter:</strong>
-        <select onChange={(e)=>setFilteredCategory(e.target.value)}>
+        <select onChange={(e)=> filterStocks(e.target.value)}>
+          <option value="All">All</option>
           <option value="Tech">Tech</option>
           <option value="Sportswear">Sportswear</option>
           <option value="Finance">Finance</option>
+          
         </select>
       </label>
     </div>

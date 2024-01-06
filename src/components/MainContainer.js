@@ -7,8 +7,7 @@ function MainContainer() {
 
   const [stockList,setStockList]= useState([])
   const [portafolioStocks,setPortafolioStocks]= useState([])
-  const [filteredCategory,setFilteredCategory]= useState("")
-
+  const [filteredCategory, setFilteredCategory]= useState("All")
 
   useEffect(() => {
     fetch("http://localhost:3001/stocks")
@@ -18,23 +17,45 @@ function MainContainer() {
        })
   }, []);
 
+//  function resetStockList(){
+//   fetch("http://localhost:3001/stocks")
+//   .then((r) => r.json())
+//   .then((stocks) => {
+//     setStockList(stocks)
+//    })
+//  }
 
-  console.log(filteredCategory)
+  function filterStocks (filteredCategory){
 
-  const filteredStocks =stockList.filter((stock)=>{
 
+    console.log(filteredCategory)
+
+    if (filteredCategory==="All"){
+
+      console.log("category is all")
+      let filteredStocks = stockList
+
+      console.log(filteredStocks)
+
+      setStockList(filteredStocks)
+
+    } 
+    else if(filteredCategory !== "All"){
+
+    let  filteredStocks= stockList.filter((stock)=>{ 
+      
     if(stock.type===filteredCategory){
       return stock
     }
-    else {
-      return stock
-    }
+    
+    //  else {
+    //   return stock
+    //  }
+   })
 
-   }) 
+   setStockList(filteredStocks)
+  }}
 
-
-
-  
 
   function stockClicked (stock){
     
@@ -114,10 +135,10 @@ function sortByPrice(){
   return (
 
     <div>
-      <SearchBar setFilteredCategory ={setFilteredCategory} sortAlphabettically={sortAlphabettically} sortByPrice={sortByPrice} filterStocks={filteredStocks}/>
+      <SearchBar filterStocks={filterStocks} sortAlphabettically={sortAlphabettically} sortByPrice={sortByPrice} />
       <div className="row">
         <div className="col-8">
-          <StockContainer stockClicked={stockClicked} stockList={filteredStocks} />
+          <StockContainer stockClicked={stockClicked} stockList={stockList} />
         </div>
         <div className="col-4">
           <PortfolioContainer stockClicked = {stockClicked} portafolioStocks={portafolioStocks} />
