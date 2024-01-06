@@ -1,12 +1,17 @@
-import React from "react";
+import React from "react"; 
 import Header from "./Header";
 import MainContainer from "./MainContainer";
 
 function App() {
+
+
+
+ //console.log(stockList)
+ 
   return (
     <div>
       <Header />
-      <MainContainer />
+      <MainContainer/>
     </div>
   );
 }

@@ -1,7 +1,16 @@
 import React from "react";
 
-function SearchBar() {
-  return (
+function SearchBar({sortAlphabettically,sortByPrice, filterStocks, setFilteredCategory}) {
+
+// function testingOnChange(){
+//   console.log("dropdown menu changed")
+// }
+
+  //Grab the input and set up conditional if it is NULL hange to to true 
+  //set conditional in onChange function -if true run function to update list of 
+  //stocks 
+
+        return (
     <div>
       <strong>Sort by:</strong>
       <label>
@@ -10,7 +19,7 @@ function SearchBar() {
           value="Alphabetically"
           name="sort"
           checked={null}
-          onChange={null}
+          onChange={sortAlphabettically}
         />
         Alphabetically
       </label>
@@ -20,14 +29,14 @@ function SearchBar() {
           value="Price"
           name="sort"
           checked={null}
-          onChange={null}
+          onChange={sortByPrice}
         />
         Price
       </label>
       <br />
       <label>
         <strong>Filter:</strong>
-        <select onChange={null}>
+        <select onChange={(e)=>setFilteredCategory(e.target.value)}>
           <option value="Tech">Tech</option>
           <option value="Sportswear">Sportswear</option>
           <option value="Finance">Finance</option>
